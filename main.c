@@ -18,8 +18,13 @@ void	debug_print_struct(t_ctx *data)
 
 int main (int c, char **args) {
     if (c != 5) {
-        printf("Error: bad input arguments!\n");
+        printf("ft_malcolm: error: bad input arguments!\n");
         printf("Example:  ./ft_malcolm 10.12.35.255 ff:bb:ff:ff:ee:ff 10.12.10.22 10:dd:a1:ee:bb:ea\n");
+        return 1;
+    }
+
+    if (getuid() != 0) {
+        printf("ft_malcolm: error: must be run as root (try sudo)\n");
         return 1;
     }
 
@@ -30,6 +35,8 @@ int main (int c, char **args) {
         ft_bzero(&data, sizeof(t_ctx));
         return 1;
     }
+
+
 
     debug_print_struct(&data);
     return 0;

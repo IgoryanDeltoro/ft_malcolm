@@ -1,7 +1,7 @@
 #ifndef FT_MALCOLM_H
 # define FT_MALCOLM_H
 # define ETH_ALEN 6
-# include "./Libft_42/libft.h"
+# include "./libft/libft.h"
 # include <linux/if_ether.h>
 # include <netinet/if_ether.h>
 # include <stdio.h>

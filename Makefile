@@ -1,6 +1,6 @@
 NAME = ft_malcolm
 CFLAGS = -Wall -Wextra -Werror
-CC = cc
+CC = cc -g
 RM = rm -rf
 
 SRC =  	main.c \
