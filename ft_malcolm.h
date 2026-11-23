@@ -2,10 +2,13 @@
 # define FT_MALCOLM_H
 # define ETH_ALEN 6
 # include "./libft/libft.h"
+# include <sys/types.h>
+# include <ifaddrs.h>
 # include <linux/if_ether.h>
 # include <netinet/if_ether.h>
 # include <stdio.h>
 # include <arpa/inet.h>
+# include <net/if.h>
 
 struct eth_header {
     uint8_t  dst_mac[6];   // destination MAC (where the frame goes)
@@ -33,7 +36,7 @@ struct arp_frame {
 typedef struct s_ctx {
     int           sockfd;            // the raw AF_PACKET socket fd
     unsigned int  ifindex;          // from if_nametoindex(), for sendto
-    // char          ifname[IFNAMSIZ]; // chosen interface, e.g. "eth0"
+    char          ifname[IFNAMSIZ]; // chosen interface, e.g. "eth0"
 
     uint8_t       src_mac[6];       // arg 2 — the MAC you spoof
     uint8_t       src_ip[4];        // arg 1 — the IP you impersonate
@@ -44,6 +47,6 @@ typedef struct s_ctx {
 // volatile sig_atomic_t  g_stop = 0;   // set to 1 by the SIGINT handler
 
 int parse_arguments(t_ctx *data, char **args);
-
+int get_interface(t_ctx *data);
 
 #endif

@@ -36,7 +36,10 @@ int main (int c, char **args) {
         return 1;
     }
 
-
+    if (get_interface(&data) == -1) {
+        ft_bzero(&data, sizeof(t_ctx));
+        return 1;
+    }
 
     debug_print_struct(&data);
     return 0;
