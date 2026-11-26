@@ -35,3 +35,15 @@ int get_interface(t_ctx *data) {
     freeifaddrs(ifaddr);
     return -1;
 }
+
+int create_arp_socket() {
+    int sock_fd;
+    
+    sock_fd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ARP));
+    if (sock_fd == -1) {
+        perror("ft_malcolm: socket: \n");
+        return -1;
+    }
+
+    return (sock_fd);
+}

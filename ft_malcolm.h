@@ -2,13 +2,17 @@
 # define FT_MALCOLM_H
 # define ETH_ALEN 6
 # include "./libft/libft.h"
+# include <linux/if_packet.h>
 # include <sys/types.h>
 # include <ifaddrs.h>
 # include <linux/if_ether.h>
 # include <netinet/if_ether.h>
 # include <stdio.h>
-# include <arpa/inet.h>
 # include <net/if.h>
+# include <sys/socket.h>
+# include <arpa/inet.h>
+# include <string.h>
+# include <errno.h>
 
 struct eth_header {
     uint8_t  dst_mac[6];   // destination MAC (where the frame goes)
@@ -48,5 +52,7 @@ typedef struct s_ctx {
 
 int parse_arguments(t_ctx *data, char **args);
 int get_interface(t_ctx *data);
+int wait_for_arp_request(int sock_fd, t_ctx *data);
+int create_arp_socket();
 
 #endif

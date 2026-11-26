@@ -31,15 +31,15 @@ int main (int c, char **args) {
     t_ctx data;
     ft_bzero(&data, sizeof(t_ctx));
 
-    if (parse_arguments(&data, args) == -1) {
-        ft_bzero(&data, sizeof(t_ctx));
+    if (parse_arguments(&data, args) == -1) 
         return 1;
-    }
 
-    if (get_interface(&data) == -1) {
-        ft_bzero(&data, sizeof(t_ctx));
+    if (get_interface(&data) == -1)
         return 1;
-    }
+
+    int sock_fd = create_arp_socket();
+    if (sock_fd == -1) return 1;
+    wait_for_arp_request(sock_fd, &data);
 
     debug_print_struct(&data);
     return 0;
